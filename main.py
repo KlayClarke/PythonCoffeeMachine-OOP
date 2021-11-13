@@ -3,16 +3,14 @@ from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
 items = Menu()
-available_drinks = Menu.get_items(items)
 coffee_machine = CoffeeMaker()
 register = MoneyMachine()
-
-revenue = register.money_received
 
 
 machine_on = True
 
 while machine_on:
+    available_drinks = Menu.get_items(items)
     #ask the user what they would like to drink...
     user_input = input(f'what would you like? {available_drinks} ').lower()
     # if the user types 'off'
