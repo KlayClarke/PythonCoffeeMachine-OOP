@@ -6,6 +6,9 @@ items = Menu()
 coffee_machine = CoffeeMaker()
 register = MoneyMachine()
 
+revenue = register.money_received
+
+
 machine_on = True
 
 while machine_on:
@@ -26,7 +29,14 @@ while machine_on:
         drink_order = items.find_drink(user_input)
         #if the resources are sufficient to make said drink...
         if coffee_machine.is_resource_sufficient(drink_order):
-            print('resources sufficient')
+            #create variable for the cost of the drink
+            bill = drink_order.cost
+            print(bill)
+            #take money from customer...
+            if register.make_payment(bill):
+                print('transaction successful')
+                # and if payment is adequate, brew beverage
+                coffee_machine.make_coffee(drink_order)
 
 
 # TODO: if resources are sufficient, process coins - if not, deal refund
